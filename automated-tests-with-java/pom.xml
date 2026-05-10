@@ -5,15 +5,22 @@
 	<groupId>br.com.erudio</groupId>
 	<artifactId>automated-tests-with-java</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<properties>
 		<java.version>21</java.version>
+		<junit.version>5.9.2</junit.version>
 		<maven.compiler.target>21</maven.compiler.target>
 		<maven.compiler.source>21</maven.compiler.source>
 
 		<maven.compiler.plugin.version>3.15.0</maven.compiler.plugin.version>
 	</properties>
-
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 	<build>
 		<plugins>
 			<plugin>
