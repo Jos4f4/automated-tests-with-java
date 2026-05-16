@@ -19,8 +19,8 @@ public class SimpleMath {
 	
 	public Double division(Double firstNumber, Double secondNumber) {
 		
-		if (secondNumber == 0) {
-	        throw new ArithmeticException("Division by zero!");
+		if (secondNumber.equals(0D)) {
+	        throw new ArithmeticException("Impossible to divide by zero!");
 	    }
 		
 		return firstNumber / secondNumber;
@@ -31,8 +31,8 @@ public class SimpleMath {
 		return (firstNumber + secondNumber) / 2;
 	}
 	
-	public Double squareRoot(Double firstNumber) {
+	public Double squareRoot(Double number) {
 		
-		return Math.sqrt(firstNumber);
+		return (Double) Math.sqrt(number);
 	}
 }
