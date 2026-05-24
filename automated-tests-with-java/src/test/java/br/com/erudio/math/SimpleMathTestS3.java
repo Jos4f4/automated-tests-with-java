@@ -9,7 +9,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Test Math Operations in Simple Math Class")
-class SimpleMathTest {
+class SimpleMathTestS3 {
 	
 	SimpleMath math;
 	
