@@ -1,15 +1,22 @@
 package br.com.erudio.service.business;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
 import br.com.erudio.business.CourseBusiness;
 import br.com.erudio.service.CourseService;
@@ -56,5 +63,88 @@ class CourseBusinessMockWithBDDTest {
 		
 		// Then / Assert
 		assertThat(filteredCourses.size(), is(4));
+	}
+	
+	// test[System Under Test]_[Condition or State Change]_[Expected Result]
+	@Test
+	@DisplayName(
+		"Delete Courses not Related to Spring Using Mockito should call Method delete Course"
+	)
+	void testDeleteCoursesNotRelatedToSpring_UsingMockitoVerify_Should_CallMethod_deleteCourse() {
+		
+		// Given / Arrange		
+		given(mockService.retrieveCourses("Leandro")).willReturn(courses);
+		
+		// When / Act
+		business.deleteCoursesNotRelatedToSpring("Leandro");
+		
+		// Then / Assert
+		// verify(mockService).deleteCourse("Agile Desmistificado com Scrum, XP, Kanban e Trello");
+		// verify(mockService, times(1)).deleteCourse("Agile Desmistificado com Scrum, XP, Kanban e Trello");
+		// verify(mockService, atLeast(1)).deleteCourse("Agile Desmistificado com Scrum, XP, Kanban e Trello");
+		verify(mockService, atLeastOnce()).deleteCourse("Agile Desmistificado com Scrum, XP, Kanban e Trello");
+		
+		verify(mockService).deleteCourse("Arquitetura de Microsserviços do 0 com ASP.NET, .NET 6 e C#");
+		
+		verify(
+			mockService, never()).deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker"
+		);
+	}
+	
+	// test[System Under Test]_[Condition or State Change]_[Expected Result]
+	@Test
+	@DisplayName(
+		"Delete Courses not Related to Spring Using Mockito should call Method delete Course V2"
+	)
+	void testDeleteCoursesNotRelatedToSpring_UsingMockitoVerify_Should_CallMethod_deleteCourseV2() {
+		
+		// Given / Arrange		
+		given(mockService.retrieveCourses("Leandro")).willReturn(courses);
+		
+		// When / Act
+		business.deleteCoursesNotRelatedToSpring("Leandro");
+		
+		String agileCourse = "Agile Desmistificado com Scrum, XP, Kanban e Trello";
+		
+		String architectureCourse = "Arquitetura de Microsserviços do 0 com ASP.NET, .NET 6 e C#";
+		
+		String restSpringCourse = "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker";
+		
+		// Then / Assert
+		then(mockService).should().deleteCourse(agileCourse);
+		
+		then(mockService).should().deleteCourse(architectureCourse);
+		
+		then(mockService).should(never()).deleteCourse(restSpringCourse);
+	}
+	
+	// test[System Under Test]_[Condition or State Change]_[Expected Result]
+	@Test
+	@DisplayName(
+		"Delete Courses not Related to Spring CapturingArguments should call Method delete Course"
+	)
+	void testDeleteCoursesNotRelatedToSpring_CapturingArguments_Should_CallMethod_deleteCourse() {
+		
+		// Given / Arrange	
+		/*
+		courses =  Arrays.asList(
+            "Agile Desmistificado com Scrum, XP, Kanban e Trello",
+            "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker"
+        );
+        */
+		
+		given(mockService.retrieveCourses("Leandro")).willReturn(courses);
+		
+		ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+				
+		// String agileCourse = "Agile Desmistificado com Scrum, XP, Kanban e Trello";
+		
+		// When / Act
+		business.deleteCoursesNotRelatedToSpring("Leandro");
+		
+		then(mockService).should(times(7)).deleteCourse(argumentCaptor.capture());
+		
+		// assertThat(argumentCaptor.getValue(), is(agileCourse));
+		assertThat(argumentCaptor.getAllValues().size(), is(7));
 	}
 }
