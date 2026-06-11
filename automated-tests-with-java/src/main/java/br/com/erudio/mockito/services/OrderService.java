@@ -1,0 +1,23 @@
+package br.com.erudio.mockito.services;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+public class OrderService {
+	
+	public Order createOrder(String productName, Long amount, String orderId) {
+		
+		Order order = new Order();
+		
+		order.setId(orderId == null ? UUID.randomUUID().toString() : orderId);
+		
+		order.setCreationDate(LocalDateTime.now());
+		
+		order.setAmount(amount);
+		
+		order.setProdutcName(productName);
+		
+		return order;
+	}
+
+}
