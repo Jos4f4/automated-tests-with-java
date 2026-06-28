@@ -1,7 +1,0 @@
-GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-automated-tests-with-java,br.com.erudio.mockito.constructor,CheckoutService,0,12,0,0,0,3,0,2,0,2
-automated-tests-with-java,br.com.erudio.mockito.constructor,PaymentProcessor,33,0,0,0,11,0,4,0,4,0
-automated-tests-with-java,br.com.erudio.mockito.services,Order,149,25,38,0,37,12,23,7,4,7
-automated-tests-with-java,br.com.erudio.mockito.services,OrderService,1,25,1,1,0,7,1,2,0,2
-automated-tests-with-java,br.com.erudio.mockito.staticwithparams,MyUtils,11,0,2,0,4,0,3,0,2,0
-automated-tests-with-java,br.com.erudio.business,CourseBusiness,0,67,0,10,0,17,0,8,0,3
